@@ -3,17 +3,11 @@
   <app-add-wish-form (addWishCallback)="subComponentCallbackAddNewWish($event)"></app-add-wish-form>
 
   <div class="row mt-3">
-    <div class="col-sm-2">
-      <select class="form-select" [(ngModel)]="wishListFilter" (ngModelChange)="wishListFilterChanged($event)">
-        <option value="0">All</option>
-        <option value="1">Unfulfilled</option>
-        <option value="2">Fulfilled</option>
-      </select>
-    </div>
+    <app-wish-list-filter [(filterIndex)]="wishListFilterIndex"></app-wish-list-filter>
   </div>
 
   <div class="row mt-3">
-    <app-wish-list [wishes]="visibleItems" (toggleCompletionCallback)="subComponentCallbackToggleCompletion($event)">
+    <app-wish-list [wishes]="wishes.filter(wishListFilters[wishListFilterIndex])" (toggleCompletionCallback)="subComponentCallbackToggleCompletion($event)">
     </app-wish-list>
   </div>
 
