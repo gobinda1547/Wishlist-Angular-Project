@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WishItem } from '../shared/models/wishItem';
 import { FormsModule } from '@angular/forms';
+import { WishListComponent } from "../wish-list/wish-list.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, WishListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -36,11 +37,6 @@ export class AppComponent {
       this.newWishText = '';
       this.recalculateVisibleItems();
     }
-  }
-
-  toggleWishitemCompletion(item: WishItem) {
-    item.isComplete = !item.isComplete;
-    this.recalculateVisibleItems();
   }
 
   wishListFilterChanged(event: any) {
