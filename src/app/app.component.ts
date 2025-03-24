@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { WishItem } from '../shared/models/wishItem';
 import { FormsModule } from '@angular/forms';
 import { WishListComponent } from "../wish-list/wish-list.component";
+import { AddWishFormComponent } from "../add-wish-form/add-wish-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, WishListComponent],
+  imports: [CommonModule, FormsModule, WishListComponent, AddWishFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,23 +22,13 @@ export class AppComponent {
   // have selected like if filter = all, then this variable will have all the wishes in it.
   visibleItems : WishItem[] = this.wishes;
 
-  // this variable will contains all the new wish text. and by accessing this variable
-  // we will add the new text to the wish list.
-  newWishText: string = '';
-
   // this variable will hold the filter type selected for showing wish list.
   // filter can have values like (All, Fulfilled, Unfulfilled)
   wishListFilter : string = '0';
 
   title = 'wishlist';
 
-  addNewWishButtonClicked() {
-    if (this.newWishText.length > 0) {
-      this.wishes.push(new WishItem(this.newWishText));
-      this.newWishText = '';
-      this.recalculateVisibleItems();
-    }
-  }
+  
 
   wishListFilterChanged(event: any) {
     this.recalculateVisibleItems();
@@ -51,5 +42,10 @@ export class AppComponent {
     } else {
       this.visibleItems = this.wishes.filter(item => item.isComplete);
     }
+  }
+
+  subComponentCallbackAddNewWish(wish: WishItem) {
+    this.wishes.push(wish);
+    this.recalculateVisibleItems();
   }
 }
