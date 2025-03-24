@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddWishFormComponent {
 
+  // we are sub-component, and the main wish list is managed by the parent component.
+  // so we can't store the newly added item to us, cause we don't have any list in our
+  // module/component. so we will emit a callback that a new wish should be added to
+  // the list.
   @Output() addWishCallback = new EventEmitter<WishItem>();
 
   // this variable will contains all the new wish text. and by accessing this variable

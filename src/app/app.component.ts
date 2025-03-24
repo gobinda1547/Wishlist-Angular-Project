@@ -48,4 +48,9 @@ export class AppComponent {
     this.wishes.push(wish);
     this.recalculateVisibleItems();
   }
+
+  subComponentCallbackToggleCompletion(index: number) {
+    this.wishes[index].isComplete = !this.wishes[index].isComplete;
+    this.recalculateVisibleItems();
+  }
 }

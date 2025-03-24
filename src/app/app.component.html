@@ -13,7 +13,8 @@
   </div>
 
   <div class="row mt-3">
-    <app-wish-list [wishes]="visibleItems"></app-wish-list>
+    <app-wish-list [wishes]="visibleItems" (toggleCompletionCallback)="subComponentCallbackToggleCompletion($event)">
+    </app-wish-list>
   </div>
 
 </div>
